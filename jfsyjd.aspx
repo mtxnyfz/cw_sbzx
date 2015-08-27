@@ -1,15 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="jfsy_hz.aspx.cs" Inherits="EmptyProjectNet40_FineUI.admin.jfsy_hz" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="jfsyjd.aspx.cs" Inherits="EmptyProjectNet40_FineUI.admin.jfsyjd" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-     <script src="../lib/jquery-1.10.2.js" charset="gbk"></script>
-<link rel="stylesheet" href="../css/ui-dialog.css"/>
-<script src="../dist/dialog-plus.js" charset="gbk"></script>
-     <style>
+      <style>
  .odd{background:#FFFFAA;}
   .odd1{background:#FFC1E0;}
 body {
@@ -45,11 +42,12 @@ table {
     transition: all 0.1s ease-in-out;     
 }    
     
-.bordered td, .bordered th {
+.bordered td,.bordered th {
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
     padding: 10px;
-    text-align:center;    
+    text-align:center; 
+    
 }
 
 .bordered th {
@@ -65,6 +63,7 @@ table {
     box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
     /*border-top: none;*/
     text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+     text-align:center; 
 }
 
 /*.bordered td:first-child, .bordered th:first-child {
@@ -173,58 +172,60 @@ table {
 }*/
   
 </style>
-   
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+	<!-- jsProgressBarHandler prerequisites : prototype.js -->
+	<script type="text/javascript" src="js/prototype/prototype.js"></script>
+
+	<!-- jsProgressBarHandler core -->
+	<script type="text/javascript" src="js/bramus/jsProgressBarHandler.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-         <div id="div1" runat="server">
-            年份：<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-    </div><br />
-  <div id="divTb" runat="server">
+      <%--  <div><span id="element1">Loading Progress Bar</span><script type="text/javascript">document.observe('dom:loaded', function () { manualPB2 = new JS_BRAMUS.jsProgressBar($('element1'), 32, { barImage: Array('images/bramus/percentImage_back1.png', 'images/bramus/percentImage_back1.png', 'images/bramus/percentImage_back2.png', 'images/bramus/percentImage_back2.png', 'images/bramus/percentImage_back3.png', 'images/bramus/percentImage_back4.png') }); }, false);</script></div>--%>
+        <br />
+  <%-- <f:PageManager ID="PageManager1" AutoSizePanelID="Panel7" runat="server" />
+         <f:Panel ID="Panel7" runat="server" BodyPadding="5px"
+            Title="经费使用进度情况" ShowBorder="false" ShowHeader="True" Layout="VBox"
+            BoxConfigAlign="Stretch">
+            <Items>
+                
+                <f:Grid ID="Grid1" Title="Grid1" PageSize="20" ShowBorder="true" BoxFlex="1" AllowPaging="true"
+                    ShowHeader="false" runat="server" 
+                    OnPageIndexChange="Grid1_PageIndexChange"   >
+                 
+                    <Columns>
+                        <f:RowNumberField  ColumnID="Panel7_Grid1_ctl08"  HeaderText="序号" Width="50px" TextAlign="Center"/>
+                        
+                         <f:BoundField Width="100px" DataField="YJMC"  HeaderText="一级"  ColumnID="Panel7_Grid1_ctl09"  DataToolTipField="YJMC" />
+                      
+                       <f:BoundField Width="100px" DataField="EJMC"  HeaderText="二级"  ColumnID="Panel7_Grid1_ctl12"  DataToolTipField="EJMC"/>
+                        <f:BoundField Width="200px" DataField="SJMC" HeaderText="三级"  ColumnID="Panel7_Grid1_ctl11" DataToolTipField="SJMC"/>
+                          <f:TemplateField HeaderText="进度" Width="200px" ColumnID="Panel7_Grid1_ctl15">
+                            <ItemTemplate>
+                              
+                                
+                                <div><span id="element6">Loading Progress Bar</span><script type="text/javascript"> document.observe('dom:loaded', function () { manualPB2 = new JS_BRAMUS.jsProgressBar($('element6'), 81, { barImage: Array('images/bramus/percentImage_back1.png', 'images/bramus/percentImage_back1.png', 'images/bramus/percentImage_back2.png', 'images/bramus/percentImage_back2.png', 'images/bramus/percentImage_back3.png', 'images/bramus/percentImage_back4.png') }); }, false);</script></div> 
+                            </ItemTemplate>
+
+                        </f:TemplateField>
+                     
+                    </Columns>
+                </f:Grid>
+
+               
+            </Items>
+        </f:Panel>--%>
+        <div>经费使用进度</div>
+       <div id="divTb" runat="server">
        
     </div>
+
+       <br/>
+         <div>部门总经费使用进度</div>
+       <div id="divTb1" runat="server">
        
+    </div>
     </form>
-     <script type="text/javascript">
-         //function show(a, b) {
-         //    var tb = "数据获取中，请稍后。。。"
-         //    var d = dialog({
-         //        title: a + "→" + b,
-         //        //content: '欢迎使用 artDialog 对话框组件！'
-         //        content: tb,
-         //        onshow: function () {
-         //            this.content(tb);
-         //        }
-         //    });
-         //    d.showModal();
-         //    $.ajax({
-         //        type: "GET",
-         //        dataType: "json",
-         //        url: encodeURI("Handler.ashx?Method=GetJosn&yjmc=" + a + "&ejmc=" + b),
-         //        //data: { id: id, name: name },
-         //        success: function (json) {
-         //            var typeData = json.Module;
-         //            tb = "<table class=\"bordered\"><thead><tr><th rowspan=\"2\">工作内容</th><th rowspan=\"2\">责任部门</th><th rowspan=\"2\">负责人</th><th rowspan=\"2\">预算金额(元)</th><th colspan=\"3\">人员经费(元)</th><th rowspan=\"2\">福利费(元)</th><th rowspan=\"2\">设备耗材费(元)</th><th rowspan=\"2\">业务费(元)</th><th rowspan=\"2\">其他(元)</th><th rowspan=\"2\">经费种类</th></tr><tr><th>校内人员</th><th>退休人员</th><th>其他人员</th></tr></thead>";
-         //            var tbBody = ""
-         //            $.each(typeData, function (i, n) {
-
-
-
-         //                tbBody += "<tr><td>" + n.SJMC + "</td>" + "<td>" + n.SBBM + "</td>" + "<td>" + n.XMFZR + "</td>" + "<td>" + n.ysje + "</td>" + "<td>" + n.ZZRYFY + "</td>" + "<td>" + n.TXRYFY + "</td>" + "<td>" + n.QTRYFY + "</td>" + "<td>" + n.FLF + "</td>" + "<td>" + n.SBHCF + "</td>" + "<td>" + n.YWF + "</td>" + "<td>" + n.QT + "</td>" + "<td>" + n.JFZL + "</td></tr>";
-
-         //            });
-         //            tb = tb + tbBody + "</table>";
-         //            d.content(tb);
-         //        },
-         //        error: function (json) {
-
-         //            d.content("数据加载失败。。。");
-         //        }
-         //    });
-
-
-         //}
-         </script>
 </body>
 </html>
-

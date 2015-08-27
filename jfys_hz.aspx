@@ -178,7 +178,7 @@ table {
 <body>
     <form id="form1" runat="server">
          <div id="div1" runat="server">
-             <asp:Button ID="Button1" runat="server" Text="导出汇总统计表到excel" OnClick="Button1_Click" />
+             年份：<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList> <asp:Button ID="Button1" runat="server" Text="导出汇总统计表到excel" OnClick="Button1_Click" />
              <asp:HyperLink ID="HyperLink1" runat="server" ></asp:HyperLink>
     </div><br />
   <div id="divTb" runat="server">

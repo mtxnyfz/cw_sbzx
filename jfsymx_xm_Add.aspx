@@ -48,7 +48,7 @@
                                <f:DropDownList ID="DropDownList_yj" runat="server" Label="一级" Margin="2 5 0 0"  ColumnWidth="33%" AutoPostBack="true" OnSelectedIndexChanged="DropDownList_yj_SelectedIndexChanged" Required="true" ShowRedStar="true">
                                 
                                </f:DropDownList>
-                                 <f:DropDownList ID="DropDownList_ej" runat="server" Label="二级" Margin="2 5 0 0"  ColumnWidth="33%" Required="true" ShowRedStar="true">
+                                 <f:DropDownList ID="DropDownList_ej" runat="server" Label="二级" Margin="2 5 0 0"  ColumnWidth="33%" Required="true" ShowRedStar="true" AutoPostBack="true"  OnSelectedIndexChanged="DropDownList_ej_SelectedIndexChanged">
                                 
                                </f:DropDownList>
                                 <f:DropDownList ID="DropDownList_sj" runat="server" Label="项目名称" Margin="2 5 0 0"  ColumnWidth="34%">

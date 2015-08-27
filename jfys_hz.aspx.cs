@@ -21,20 +21,32 @@ namespace EmptyProjectNet40_FineUI.admin
         {
             if (!IsPostBack)
             {
+                databind_DropDownList1();
                 databind();
             }
 
            
         }
+
+        protected void databind_DropDownList1()
+        {
+            string sqlstr = "SELECT distinct SUBSTRING([CZSJ],1,4) as nf FROM [cw_sbzx].[dbo].[JFYSSBB] where  SFSC!=1 and ZT=3 ";
+            DataTable dt = DbHelperSQL.Query(sqlstr).Tables[0];
+            DropDownList1.DataTextField = "nf";
+            DropDownList1.DataValueField = "nf";
+            DropDownList1.DataSource = dt;
+            DropDownList1.DataBind();
+        }
         protected void databind()
         {
             string sqlstr = "";
+            string nf = DropDownList1.Text.Trim();
             StringBuilder sb = new StringBuilder();
             sb.Append("<table class=\"bordered\"><thead><tr><th rowspan=\"2\">一级</th><th rowspan=\"2\">二级</th><th colspan=\"3\">人员经费(元)</th><th rowspan=\"2\">福利费(元)</th><th rowspan=\"2\">设备耗材费(元)</th><th rowspan=\"2\">业务费(元)</th><th rowspan=\"2\">其他(元)</th><th rowspan=\"2\">小计(元)</th><th rowspan=\"2\">详情</th></tr><tr><th>校内人员</th><th>退休人员</th><th>其他人员</th></tr></thead>");
             //sb.Append("</table>");
           
             DataTable dt = null, dt_yjmc = null;
-            sqlstr = "  select YJMC,EJMC,sum(ISNULL(ZZRYFY,0)) as ZZRYFYHJ,sum(ISNULL(TXRYFY,0)) as TXRYFYHJ,sum(ISNULL(QTRYFY,0)) as QTRYFYHJ,sum(ISNULL(FLF,0)) as FLFHJ,sum(ISNULL(SBHCF,0)) as SBHCFHJ,sum(ISNULL(YWF,0)) as YWFHJ,sum(ISNULL(QT,0)) as QTHJ,(sum(ISNULL(ZZRYFY,0))+sum(ISNULL(TXRYFY,0))+sum(ISNULL(QTRYFY,0))+sum(ISNULL(FLF,0))+sum(ISNULL(SBHCF,0))+sum(ISNULL(YWF,0))+sum(ISNULL(QT,0))) AS HJ from [JFYSSBB] where  SFSC!=1 and ZT=3 group  by YJMC,EJMC";
+            sqlstr = "  select YJMC,EJMC,sum(ISNULL(ZZRYFY,0)) as ZZRYFYHJ,sum(ISNULL(TXRYFY,0)) as TXRYFYHJ,sum(ISNULL(QTRYFY,0)) as QTRYFYHJ,sum(ISNULL(FLF,0)) as FLFHJ,sum(ISNULL(SBHCF,0)) as SBHCFHJ,sum(ISNULL(YWF,0)) as YWFHJ,sum(ISNULL(QT,0)) as QTHJ,(sum(ISNULL(ZZRYFY,0))+sum(ISNULL(TXRYFY,0))+sum(ISNULL(QTRYFY,0))+sum(ISNULL(FLF,0))+sum(ISNULL(SBHCF,0))+sum(ISNULL(YWF,0))+sum(ISNULL(QT,0))) AS HJ from [JFYSSBB] where  SFSC!=1 and ZT=3 and  SUBSTRING([CZSJ],1,4)='"+nf+"' group  by YJMC,EJMC";
             dt = DbHelperSQL.Query(sqlstr).Tables[0];
             sqlstr = "select YJMC from [JFYSSBB] where  SFSC!=1 and ZT=3  group by YJMC";
             dt_yjmc = DbHelperSQL.Query(sqlstr).Tables[0];
@@ -74,9 +86,12 @@ namespace EmptyProjectNet40_FineUI.admin
                     c7 = c7 + double.Parse(drs[j][8].ToString().Trim());
                     c8 = c8 + double.Parse(drs[j][9].ToString().Trim());
                 }
-                sb.Append("<tr class=\"odd\">");
-                sb.Append("<td colspan=\"2\">小计</td><td>" + c1 + "</td><td>" + c2 + "</td><td>" + c3 + "</td><td>" + c4 + "</td><td>" + c5 + "</td><td>" + c6 + "</td><td>" + c7 + "</td><td>" + c8 + "</td><td></td>");
-                sb.Append("</tr>");
+                if (drs.Length != 0)
+                {
+                    sb.Append("<tr class=\"odd\">");
+                    sb.Append("<td colspan=\"2\">小计</td><td>" + c1 + "</td><td>" + c2 + "</td><td>" + c3 + "</td><td>" + c4 + "</td><td>" + c5 + "</td><td>" + c6 + "</td><td>" + c7 + "</td><td>" + c8 + "</td><td></td>");
+                    sb.Append("</tr>");
+                }
                 c1_hj = c1_hj + c1;
                 c2_hj = c2_hj + c2;
                 c3_hj = c3_hj + c3;
@@ -122,6 +137,11 @@ namespace EmptyProjectNet40_FineUI.admin
                 message = "没有可导出的数据";
                 HttpContext.Current.Response.Write(string.Format(js, message));
             }
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            databind();
         }
        
     }

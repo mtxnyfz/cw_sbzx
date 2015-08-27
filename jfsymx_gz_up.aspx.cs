@@ -48,7 +48,8 @@ namespace EmptyProjectNet40_FineUI.admin
         protected void DropDownList_yj_databind()
         {
             DropDownList_yj.Items.Clear();
-            DataTable dt = DbHelperSQL.Query("SELECT distinct [YJMC]  FROM [GZJBMC] where [ZRBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%'  order by [YJMC]").Tables[0];
+            //DataTable dt = DbHelperSQL.Query("SELECT distinct [YJMC]  FROM [GZJBMC] where [ZRBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%'  order by [YJMC]").Tables[0];
+            DataTable dt = DbHelperSQL.Query("SELECT distinct [YJMC]  FROM [JFYSSBB] where [SBBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%' and ZT=3 and SFSC!=1 and JFZL='工作经费' and USERUID='" + pb.GetIdentityId() + "' order by [YJMC]").Tables[0];
             DropDownList_yj.DataSource = dt;
             DropDownList_yj.DataTextField = "YJMC";
             DropDownList_yj.DataValueField = "YJMC";
@@ -63,7 +64,8 @@ namespace EmptyProjectNet40_FineUI.admin
         protected void DropDownList_ej_databind(string yjmc)
         {
             DropDownList_ej.Items.Clear();
-            DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "'  order by [EJMC]").Tables[0];
+            //DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "'  order by [EJMC]").Tables[0];
+            DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [JFYSSBB] where [SBBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%' and [YJMC]='" + yjmc + "' and ZT=3 and SFSC!=1 and JFZL='工作经费' and USERUID='" + pb.GetIdentityId() + "'  order by [EJMC]").Tables[0];
             DropDownList_ej.DataSource = dt;
             DropDownList_ej.DataTextField = "EJMC";
             DropDownList_ej.DataValueField = "EJMC";
@@ -76,7 +78,8 @@ namespace EmptyProjectNet40_FineUI.admin
         protected void DropDownList_sj_databind(string EJMC)
         {
             DropDownList_sj.Items.Clear();
-            DataTable dt = DbHelperSQL.Query("SELECT distinct [SJMC]  FROM [GZJBMC] where EJMC='" + EJMC + "'  order by [sjmc]").Tables[0];
+            //DataTable dt = DbHelperSQL.Query("SELECT distinct [SJMC]  FROM [GZJBMC] where EJMC='" + EJMC + "'  order by [sjmc]").Tables[0];
+            DataTable dt = DbHelperSQL.Query("SELECT distinct [SJMC]  FROM [JFYSSBB] where [SBBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%' and EJMC='" + EJMC + "'  and ZT=3 and SFSC!=1 and JFZL='工作经费' and USERUID='" + pb.GetIdentityId() + "'  order by [sjmc]").Tables[0];
             DropDownList_sj.DataSource = dt;
             DropDownList_sj.DataTextField = "SJMC";
             DropDownList_sj.DataValueField = "SJMC";
