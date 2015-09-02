@@ -44,7 +44,7 @@ namespace EmptyProjectNet40_FineUI.admin
             DropDownList_yj.DataTextField = "YJMC";
             DropDownList_yj.DataValueField = "YJMC";
             DropDownList_yj.DataBind();
-            DropDownList_yj.Items.Add("其他", "其他");
+            //DropDownList_yj.Items.Add("其他", "其他");
             DropDownList_yj.Items.Add("请选择", "请选择");
 
             dp_setvalue(DropDownList_yj, "请选择");
@@ -53,7 +53,7 @@ namespace EmptyProjectNet40_FineUI.admin
         protected void DropDownList_ej_databind(string yjmc)
         {
             DropDownList_ej.Items.Clear();
-            DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "'  order by [EJMC]").Tables[0];
+            DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "' and [ZRBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%'  order by [EJMC]").Tables[0];
             DropDownList_ej.DataSource = dt;
             DropDownList_ej.DataTextField = "EJMC";
             DropDownList_ej.DataValueField = "EJMC";

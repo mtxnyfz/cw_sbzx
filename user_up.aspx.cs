@@ -179,7 +179,7 @@ namespace XMGL.Web.admin
                 return;
             }
             sdr.Dispose();
-
+            Password = assist.MD5Encrypt(Password);
             //sqlstr = "insert into Users(user_uid,UserId,Name,Password,Ssxb_dm,Ssxb_mc,tel) values('" + user_uid + "','" + UserId + "','" + Name + "','" + Password + "','" + Ssxb_dm + "','" + Ssxb_mc + "','" + tel + "')";
 
             sqlstr = "update Users set Name='" + Name + "',Password='" + Password + "',zrbm='" + Ssxb_mc + "',ActualName='"+ActualName+"'  where Id=" + Convert.ToInt32(HiddenField_id.Text.Trim());

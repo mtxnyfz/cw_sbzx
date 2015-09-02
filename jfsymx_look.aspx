@@ -46,7 +46,15 @@
              border: 1px solid black;
         }
                 
-        
+          .border77
+        {
+           
+            /*border-top: 0px solid #FFFFFF;
+             border-right: 0px solid #FFFFFF;
+              border-left: 0px solid #FFFFFF;*/
+               border-bottom: 1px solid black;
+           
+        }
         
         
         .style17

@@ -98,8 +98,8 @@ namespace XMGL.Web.admin
                 return;
             }
             sdr.Dispose();
-
-            sqlstr = "insert into Users(user_uid,UserId,Name,Password,zrbm,tel,ActualName) values('" + user_uid + "','" + UserId + "','" + Name + "','111111','" + zrbm + "','" + tel + "','" + ActualName + "')";
+            Password = assist.MD5Encrypt("111111");
+            sqlstr = "insert into Users(user_uid,UserId,Name,Password,zrbm,tel,ActualName) values('" + user_uid + "','" + UserId + "','" + Name + "','" + Password + "','" + zrbm + "','" + tel + "','" + ActualName + "')";
             int state = DbHelperSQL.ExecuteSql(sqlstr);
             if (state != 0)
             {

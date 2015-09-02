@@ -178,7 +178,7 @@ namespace EmptyProjectNet40_FineUI.admin
                 je = sum_je(dt);
                 htr = new HtmlTableRow();
                 htc = new HtmlTableCell();
-                htc.Attributes.Add("class", "style7");
+                htc.Attributes.Add("class", "border77");
                 htc.InnerText = "合计：" + Money2ChineseHelper.MoneyToChinese(String.Format("{0:N2}", je));
                 htr.Cells.Add(htc);
                 htc.ColSpan = 3;
@@ -265,6 +265,7 @@ namespace EmptyProjectNet40_FineUI.admin
                 htc.InnerText = "";
                 htr.Cells.Add(htc);
                 htc = new HtmlTableCell();
+                htc.Attributes.Add("class", "style7");
                 htc.InnerText = "";
                 htr.Cells.Add(htc);
 

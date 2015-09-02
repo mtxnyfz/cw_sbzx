@@ -82,7 +82,7 @@ namespace EmptyProjectNet40_FineUI.admin
             DropDownList_yj.DataValueField = "YJMC";
             DropDownList_yj.DataBind();
            
-            DropDownList_yj.Items.Add("其他", "其他");
+            //DropDownList_yj.Items.Add("其他", "其他");
             DropDownList_yj.Items.Add("请选择", "请选择");
 
             dp_setvalue(DropDownList_yj, "请选择");
@@ -91,7 +91,7 @@ namespace EmptyProjectNet40_FineUI.admin
         protected void DropDownList_ej_databind(string yjmc)
         {
             DropDownList_ej.Items.Clear();
-            DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "'  order by [EJMC]").Tables[0];
+            DataTable dt = DbHelperSQL.Query("SELECT distinct [EJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "' and [ZRBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%'  order by [EJMC]").Tables[0];
             DropDownList_ej.DataSource = dt;
             DropDownList_ej.DataTextField = "EJMC";
             DropDownList_ej.DataValueField = "EJMC";
@@ -103,8 +103,9 @@ namespace EmptyProjectNet40_FineUI.admin
 
         protected void DropDownList_sj_databind(string EJMC)
         {
+            string yjmc = DropDownList_yj.SelectedText.Trim();
             DropDownList_sj.Items.Clear();
-            DataTable dt = DbHelperSQL.Query("SELECT distinct [SJMC]  FROM [GZJBMC] where EJMC='" + EJMC + "'  order by [sjmc]").Tables[0];
+            DataTable dt = DbHelperSQL.Query("SELECT distinct [SJMC]  FROM [GZJBMC] where [YJMC]='" + yjmc + "' and EJMC='" + EJMC + "' and [ZRBM] like '%" + ViewState["zrbm"].ToString().Trim() + "%'  order by [sjmc]").Tables[0];
             DropDownList_sj.DataSource = dt;
             DropDownList_sj.DataTextField = "SJMC";
             DropDownList_sj.DataValueField = "SJMC";

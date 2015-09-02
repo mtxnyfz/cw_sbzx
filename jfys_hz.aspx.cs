@@ -112,11 +112,12 @@ namespace EmptyProjectNet40_FineUI.admin
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            string nf = DropDownList1.Text.Trim();
             string js = "<script language=javascript>alert('{0}');</script>";
             string message = "导出成功，请点击下载文件";
             string sqlstr = "";
             DataTable dt = null, dt_yjmc = null;
-            sqlstr = "  select YJMC,EJMC,sum(ISNULL(ZZRYFY,0)) as ZZRYFYHJ,sum(ISNULL(TXRYFY,0)) as TXRYFYHJ,sum(ISNULL(QTRYFY,0)) as QTRYFYHJ,sum(ISNULL(FLF,0)) as FLFHJ,sum(ISNULL(SBHCF,0)) as SBHCFHJ,sum(ISNULL(YWF,0)) as YWFHJ,sum(ISNULL(QT,0)) as QTHJ,(sum(ISNULL(ZZRYFY,0))+sum(ISNULL(TXRYFY,0))+sum(ISNULL(QTRYFY,0))+sum(ISNULL(FLF,0))+sum(ISNULL(SBHCF,0))+sum(ISNULL(YWF,0))+sum(ISNULL(QT,0))) AS HJ from [JFYSSBB] where SFSC!=1 and ZT=3 group  by YJMC,EJMC";
+            sqlstr = "  select YJMC,EJMC,sum(ISNULL(ZZRYFY,0)) as ZZRYFYHJ,sum(ISNULL(TXRYFY,0)) as TXRYFYHJ,sum(ISNULL(QTRYFY,0)) as QTRYFYHJ,sum(ISNULL(FLF,0)) as FLFHJ,sum(ISNULL(SBHCF,0)) as SBHCFHJ,sum(ISNULL(YWF,0)) as YWFHJ,sum(ISNULL(QT,0)) as QTHJ,(sum(ISNULL(ZZRYFY,0))+sum(ISNULL(TXRYFY,0))+sum(ISNULL(QTRYFY,0))+sum(ISNULL(FLF,0))+sum(ISNULL(SBHCF,0))+sum(ISNULL(YWF,0))+sum(ISNULL(QT,0))) AS HJ from [JFYSSBB] where SFSC!=1 and ZT=3 and  SUBSTRING([CZSJ],1,4)='" + nf + "' group  by YJMC,EJMC";
             dt = DbHelperSQL.Query(sqlstr).Tables[0];
             sqlstr = "  select YJMC from [JFYSSBB] where  SFSC!=1 and ZT=3 group by YJMC";
             dt_yjmc = DbHelperSQL.Query(sqlstr).Tables[0];

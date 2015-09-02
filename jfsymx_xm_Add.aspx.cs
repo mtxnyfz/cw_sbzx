@@ -121,10 +121,11 @@ namespace EmptyProjectNet40_FineUI.admin
 
         protected void NumberBox_zz_TextChanged(object sender, EventArgs e)
         {
-            HJ();
+            NumberBox nb = sender as NumberBox;
+            HJ(nb);
         }
 
-        public void HJ()
+        public void HJ(NumberBox nb)
         {
             try
             {
@@ -136,6 +137,13 @@ namespace EmptyProjectNet40_FineUI.admin
                 string ywf = NumberBox_ywf.Text.Trim() == "" ? "0" : NumberBox_ywf.Text.ToString().Trim();
                 string qt = NumberBox_qt.Text.Trim() == "" ? "0" : NumberBox_qt.Text.ToString().Trim();
                 float hj = (float.Parse(ryjf_zz) + float.Parse(ryjf_txry) + float.Parse(ryjf_qtry) + float.Parse(flf) + float.Parse(sbhc) + float.Parse(ywf) + float.Parse(qt));
+                if (hj >= 1000000)
+                {
+                    NumberBox_syje.Text = String.Format("{0:0.00}", hj - float.Parse(nb.Text.Trim()));
+                    nb.Text = "0";
+                    Alert.Show("使用金额不能大于或等于1000000");
+                    return;
+                }
                 NumberBox_syje.Text = String.Format("{0:0.00}", hj);
             }
             catch (Exception ex)
@@ -144,7 +152,28 @@ namespace EmptyProjectNet40_FineUI.admin
                 Alert.Show("经费使用合计错误：" + ex.Message);
             }
         }
+        protected double sum_je()
+        {
+            DataTable dt = null;
+            //string syjf = "0";
+            double syjf = 0;
+            if (Session["dt_jfmx"] != null)
+            {
+                dt = Session["dt_jfmx"] as DataTable;
 
+
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    syjf += double.Parse(row["JE"].ToString());
+                }
+
+
+
+            }
+
+            return syjf;
+        }
         protected void Button_add_Click(object sender, EventArgs e)
         {
             if (DropDownList_yj.SelectedText.Trim() == "请选择")
@@ -160,6 +189,11 @@ namespace EmptyProjectNet40_FineUI.admin
             if (DropDownList_sj.SelectedText.Trim() == "请选择")
             {
                 Alert.Show("请选择项目名称");
+                return;
+            }
+            if (sum_je() + double.Parse(NumberBox_syje.Text.Trim()) >= 1000000)
+            {
+                Alert.Show("每次报销费用不能等于或超过1000000");
                 return;
             }
             DataTable dt1 = null;

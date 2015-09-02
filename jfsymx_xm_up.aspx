@@ -75,16 +75,16 @@
                          
                           <f:Panel ID="Panel7" Layout="Column" CssClass="formitem" ShowHeader="false" ShowBorder="false" runat="server" >
                             <Items>
-                                 <f:NumberBox ID="NumberBox_syje" runat="server" Label="经费使用金额(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="50%" Margin="0 5 5 0" EmptyText="系统自动汇总" Readonly="true" Enabled="false"></f:NumberBox>
+                                 <f:NumberBox ID="NumberBox_syje" runat="server" Label="经费使用金额(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="50%" Margin="0 5 5 0" EmptyText="系统自动汇总" Readonly="true" Enabled="false"></f:NumberBox>
                                  </Items>
                         </f:Panel>
                          <f:GroupPanel ID="GroupPanel1"  Title="<strong>人员费用</strong>"  runat="server" >
                             <Items>
                          <f:Panel ID="Panel1" Layout="Column" CssClass="formitem" ShowHeader="false" ShowBorder="false" runat="server" >
                             <Items>
-                                  <f:NumberBox ID="NumberBox_zz" runat="server" Label="在职(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="33%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
-                                  <f:NumberBox ID="NumberBox_txry" runat="server" Label="退休人员(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="33%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
-                                  <f:NumberBox ID="NumberBox_qtry" runat="server" Label="其他人员(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="34%" Margin="2 2 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                  <f:NumberBox ID="NumberBox_zz" runat="server" Label="在职(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="33%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                  <f:NumberBox ID="NumberBox_txry" runat="server" Label="退休人员(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="33%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                  <f:NumberBox ID="NumberBox_qtry" runat="server" Label="其他人员(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="34%" Margin="2 2 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
                             
                             </Items>
                         </f:Panel>
@@ -92,10 +92,10 @@
                                 </f:GroupPanel>
                          <f:Panel ID="Panel4" Layout="Column" CssClass="formitem" ShowHeader="false" ShowBorder="false" runat="server" >
                             <Items>
-                                  <f:NumberBox ID="NumberBox_flf" runat="server" Label="福利费(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
-                                  <f:NumberBox ID="NumberBox_sbhc" runat="server" Label="设备耗材费(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
-                                  <f:NumberBox ID="NumberBox_ywf" runat="server" Label="业务费(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 2 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
-                                 <f:NumberBox ID="NumberBox_qt" runat="server" Label="其他(元)"  MinValue="0" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 2 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                  <f:NumberBox ID="NumberBox_flf" runat="server" Label="福利费(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                  <f:NumberBox ID="NumberBox_sbhc" runat="server" Label="设备耗材费(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 5 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                  <f:NumberBox ID="NumberBox_ywf" runat="server" Label="业务费(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 2 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
+                                 <f:NumberBox ID="NumberBox_qt" runat="server" Label="其他(元)"  MinValue="0" MaxValue="999999" DecimalPrecision="2" NoNegative="True" Required="true" ShowRedStar="True" ColumnWidth="25%" Margin="2 2 5 0"  OnTextChanged="NumberBox_zz_TextChanged" AutoPostBack="true"></f:NumberBox>
                             
                             </Items>
                         </f:Panel>
