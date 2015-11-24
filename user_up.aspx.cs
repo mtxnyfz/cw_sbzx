@@ -46,8 +46,8 @@ namespace XMGL.Web.admin
                         TextBox_lgname.Text = sdr["Name"].ToString().Trim();
                         //TextBox_tel.Text = sdr["tel"].ToString().Trim();
                         //TextBox_mobile.Text = sdr["mobile"].ToString().Trim();
-                        TextBox_pwd.Text = sdr["Password"].ToString().Trim();
-                        TextBox_rpwd.Text = sdr["Password"].ToString().Trim();
+                        TextBox_pwd.Text =assist.MD5Decrypt(sdr["Password"].ToString().Trim());
+                        TextBox_rpwd.Text = assist.MD5Decrypt(sdr["Password"].ToString().Trim());
                         if (sdr["zrbm"].ToString().Trim()!="")
                         dp_setvalue(DropDownList_xb, sdr["zrbm"].ToString().Trim());
                         else

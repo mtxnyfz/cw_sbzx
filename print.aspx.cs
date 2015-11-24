@@ -26,7 +26,7 @@ namespace EmptyProjectNet40_FineUI.admin
                 if (sdr.Read())
                 {
                     Label1.Text = sdr["BCJFJTYT"].ToString();
-                    Label_bxrq.Text ="报销日期："+ Convert.ToDateTime(sdr["BXRQ"].ToString().Trim()).ToString("yyyy年MM月dd日");
+                    Label_bxrq.Text = Convert.ToDateTime(sdr["BXRQ"].ToString().Trim()).ToString("yyyy年MM月dd日");
                 }
                 sdr.Dispose();
             }
@@ -50,7 +50,7 @@ namespace EmptyProjectNet40_FineUI.admin
                 htc = new HtmlTableCell();
                 htc.Attributes.Add("class", "border01");
                 htc.Attributes.Add("height", "25");
-                htc.Align = "center";
+                htc.Align = "left";
                 htc.BgColor = "#FFFFFF";
                 htc.InnerText = dt.Rows[i]["YJMC"].ToString();
                 htr.Cells.Add(htc);
@@ -61,14 +61,15 @@ namespace EmptyProjectNet40_FineUI.admin
                 htc.InnerText = dt.Rows[i]["EJMC"].ToString();
                 htc.Attributes.Add("class", "border01");
                 htc.Attributes.Add("height", "25");
-                htc.Align = "center";
+                htc.Align = "left";
                 htc.BgColor = "#FFFFFF";
                 htr.Cells.Add(htc);
+                htc.ColSpan = 2;
 
                 htc = new HtmlTableCell();
                 htc.Attributes.Add("class", "border01");
                 htc.Attributes.Add("height", "25");
-                htc.Align = "center";
+                htc.Align = "left";
                 htc.BgColor = "#FFFFFF";
                 htc.InnerText = dt.Rows[i]["SJMC"].ToString();
                 htr.Cells.Add(htc);
@@ -205,11 +206,21 @@ namespace EmptyProjectNet40_FineUI.admin
             je = sum_je(dt);
             htr = new HtmlTableRow();
             htc = new HtmlTableCell();
+            htc.Attributes.Add("class", "border06 title");
+            htc.Attributes.Add("height", "25");
+            htc.Align = "center";
+            htc.BgColor = "#FFFFFF";
+            htc.InnerText = "合计";
+            htr.Cells.Add(htc);
+
+
+            //htr = new HtmlTableRow();
+            htc = new HtmlTableCell();
             htc.Attributes.Add("class", "border06");
             htc.Attributes.Add("height", "25");
-            htc.Align = "right";
+            htc.Align = "center";
             htc.BgColor = "#FFFFFF";
-            htc.InnerText = "合计：" + Money2ChineseHelper.MoneyToChinese(String.Format("{0:N2}", je));
+            htc.InnerText = Money2ChineseHelper.MoneyToChinese(String.Format("{0:N2}", je));
             htr.Cells.Add(htc);
             htc.ColSpan = 3;
 
@@ -316,7 +327,7 @@ namespace EmptyProjectNet40_FineUI.admin
             htc.BgColor = "#FFFFFF";
             htc.InnerText = "经办人：";
             htr.Cells.Add(htc);
-            htc.ColSpan = 1;
+            htc.ColSpan = 2;
 
 
             htc = new HtmlTableCell();
@@ -326,7 +337,7 @@ namespace EmptyProjectNet40_FineUI.admin
             htc.BgColor = "#FFFFFF";
             htc.InnerText = "部门审批：";
             htr.Cells.Add(htc);
-            htc.ColSpan = 2;
+            htc.ColSpan = 3;
 
 
             htc = new HtmlTableCell();
@@ -336,7 +347,7 @@ namespace EmptyProjectNet40_FineUI.admin
             htc.BgColor = "#FFFFFF";
             htc.InnerText = "稽核：";
             htr.Cells.Add(htc);
-            htc.ColSpan = 6;
+            htc.ColSpan = 5;
 
 
             htc = new HtmlTableCell();

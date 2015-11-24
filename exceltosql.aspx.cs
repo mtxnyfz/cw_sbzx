@@ -22,8 +22,8 @@ namespace EmptyProjectNet40_FineUI.admin
         {
             cw_sbzx.Model.GZJBMC GZJBMC_model = new cw_sbzx.Model.GZJBMC();
             cw_sbzx.BLL.GZJBMC GZJBMC_bll = new cw_sbzx.BLL.GZJBMC();
-            ReadOrWriteExcel rw = new ExcelHelp.ReadOrWriteExcel(@"D:\会议记录\预算模块\工作经费预算申报汇总表和流程表.xlsx");
-            DataTable dt = rw.BeginRead("B2", "E63", "经费预算汇总表和审批流程表（含数据）");
+            ReadOrWriteExcel rw = new ExcelHelp.ReadOrWriteExcel(@"D:\会议记录\预算模块\部门对应表.xlsx");
+            DataTable dt = rw.BeginRead("B2", "E54", "Sheet1");
             //string aa = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -31,7 +31,7 @@ namespace EmptyProjectNet40_FineUI.admin
                 GZJBMC_model.EJMC = dt.Rows[i][1].ToString();
                 GZJBMC_model.SJMC = dt.Rows[i][2].ToString();
                 GZJBMC_model.ZRBM = dt.Rows[i][3].ToString();
-                //GZJBMC_bll.Add(GZJBMC_model);
+                GZJBMC_bll.Add(GZJBMC_model);
             }
         }
     }
